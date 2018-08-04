@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-jar=$(ls -1 ./target/scala-2.11/ltr4l*.jar|head -n 1)
+jar=$(ls -1 ./target/scala-2.12/ltr4l*.jar|head -n 1)
 echo $jar 
 
 jars=$jar
