@@ -55,11 +55,24 @@ public class DCG implements RankEval {
      * @return the score of NDCG
      */
     public double calculate(List<Document> docsRanks, int position) {
+      /* debug
+      System.out.println("# output");
+      for (Document doc : docsRanks) {
+        System.out.println("  " + doc.getLabel());
+      }
+      */
       //Accept docs in predicted ranking order
       double dcg = dcg(docsRanks, position);
-      //System.out.println(dcg);
+
       //Sort for ideal
       docsRanks.sort(Comparator.comparingInt(Document::getLabel).reversed()); //to arrange in order of highest to lowest
+      /*
+      System.out.println("# sorted");
+      for (Document doc : docsRanks) {
+        System.out.println("  " + doc.getLabel() + " " + doc.toString());
+      }
+      */
+
       double idealDcg = dcg(docsRanks, position);
       return idealDcg == 0 ? 0.0 : dcg / idealDcg;
     }

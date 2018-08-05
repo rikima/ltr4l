@@ -62,6 +62,7 @@ public class Predict {
 
     String modelPath = getModelPath(line, params);
     Config optionalConfig = createOptionalConfig(modelPath, line);
+    System.out.println("test " + optionalConfig.dataSet.test);
     QuerySet testSet = QuerySet.create(optionalConfig.dataSet.test);
     Ranker ranker = getRanker(modelPath);
 
@@ -128,6 +129,8 @@ public class Predict {
 
   public static String getModelPath(CommandLine line, String[] params){
     assert(params.length == 1);
+    String modelPath = line.hasOption("model") ? line.getOptionValue("model") : String.format("model/%s-model.json", params[0]);
+    System.out.println("modelPath " + modelPath);
     return line.hasOption("model") ? line.getOptionValue("model") : String.format("model/%s-model.json", params[0]);
   }
 
@@ -161,7 +164,7 @@ public class Predict {
     double score = eval.calculateAvgAllQueries(ranker, testSet, (int) optionalConfig.evaluation.params.get("k"));
     String header = optionalConfig.evaluation.evaluator + "@" + optionalConfig.evaluation.params.get("k") + " for " + optionalConfig.algorithm;
     Report report = Report.getReport(optionalConfig, header);
-    report.log(score);
+    report.log(eval.getClass().getName(), score);
     report.close();
   }
 

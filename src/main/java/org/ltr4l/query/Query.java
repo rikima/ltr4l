@@ -36,6 +36,10 @@ public class Query {
     featureLength = docList.get(0).getFeatureLength();
   }
 
+  public String toString() {
+    return "queryId " + queryId;
+  }
+
   //This returns all document pairs (docA, docB), ordered such that
   // labelA >= labelB
 /*    public Document[][] orderAllDocPairs () {

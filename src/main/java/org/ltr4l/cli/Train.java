@@ -63,6 +63,9 @@ public class Train {
     String configPath = getConfigPath(line, params);
     Config optionalConfig = createOptionalConfig(configPath, line);
 
+    System.out.println("training " + optionalConfig.dataSet.training);
+    System.out.println("validation " + optionalConfig.dataSet.validation);
+
     QuerySet trainingSet = QuerySet.create(optionalConfig.dataSet.training);
     QuerySet validationSet = QuerySet.create(optionalConfig.dataSet.validation);
 

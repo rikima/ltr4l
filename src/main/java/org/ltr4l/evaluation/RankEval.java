@@ -39,9 +39,11 @@ public interface RankEval {
     double total = 0;
     for (Query query : queries) {
       double queryVal = calculate(ranker.sort(query), position);
+      //System.out.println(" query " + query + " score " + queryVal);
       if (!Double.isFinite(queryVal)) continue;
       total += queryVal;
     }
+    //System.out.println("#queries:" + queries.size());
     return total / queries.size();
   }
 

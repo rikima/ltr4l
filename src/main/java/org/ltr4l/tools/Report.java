@@ -62,9 +62,8 @@ public class Report {
     ps.printf("%d,%f,%f,%f\n", iter, eval, tloss, vloss);
   }
 
-  public void log(double eval){
-    if(verbose)
-      System.out.printf("Evaluation score: %f\n", eval);
+  public void log(String type, double eval){
+    if (verbose) System.out.printf("Evaluation:%s score: %f\n", type, eval);
     ps.printf("%f", eval);
   }
 
